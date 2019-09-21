@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="container form" style="margin: 10% auto; max-width: 350px;">
+  <h2>Entrar</h2>
+  <form class="form-login" [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <input type="email" class="form-control" formControlName="email"
+            placeholder="E-mail">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="password"
+            placeholder="Senha">
+        </div>
+      </div>
+
+      <div class="col-12">
+        <p class="text-right forgot">ESQUECEU SUA SENHA?</p>
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <app-button
+            [title]="title"
+            (onSubmit)="($event)"></app-button>
+        </div>
+
+        <div class="col-12 text-center py-4">
+          <a [routerLink]="['/register']">Não tem um conta?
+            Cadastre-se</a>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

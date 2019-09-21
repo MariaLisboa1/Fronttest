@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<div class="container form" style="margin: 5% auto;max-width: 980px;">
+  <h2>Cadastrar</h2>
+
+  <form class="py-4" [formGroup]="registerForm"
+    (ngSubmit)="onSubmit(registerForm.value)">
+
+    <h5>Informações Pessoais</h5>
+    <div class="form-row justify-content-between">
+
+      <div class="form-group col-md-12">
+        <input type="text" class="form-control"
+          placeholder="Nome/Razão Social" formControlName="nameSocialReason">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="CPF" formControlName="cpf">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="Telefone" formControlName="phone">
+      </div>
+      <div class="form-group col-md-12">
+        <input type="text" class="form-control"
+          placeholder="E-mail" formControlName="email">
+      </div>
+
+      <div class="form-group col-md-12">
+        <input type="text" class="form-control"
+          placeholder="Senha" formControlName="password">
+      </div>
+    </div>
+
+    <h5>Endereço</h5>
+    <div class="form-row justify-content-end">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="cep" formControlName="cep">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="Logragroudo" formControlName="publicPlace">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="Numero" formControlName="num">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+          placeholder="Bairro" formControlName="neighborhood">
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <app-button
+          [title]="title"
+          (onSubmit)="($event)"></app-button>
+      </div>
+
+      <div class="col-12 text-center py-4">
+        <a [routerLink]="['/login']">Já tem uma conta?
+          Faça login</a>
+      </div>
+    </div>
+
+
+
+  </form>
+</div>

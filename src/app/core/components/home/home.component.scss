@@ -1,0 +1,111 @@
+.bg-front {
+  top: -110px;
+  left: 152px;
+  width: 980px;
+  height: 900px;
+  opacity: 1;
+  z-index: 1;
+  position: absolute;
+}
+
+.image-text {
+  z-index: 2;
+  opacity: 1;
+  text-align: center;
+  position: relative;
+}
+
+.text {
+  z-index: 2;
+  text-align: center;
+  position: relative;
+  font-family: Bold 20px/34px Mukta;
+  white-space: nowrap;
+}
+
+.text button {
+  border: 2px solid #ffffff;
+  border-radius: 32px;
+  opacity: 1;
+  text-align: center;
+  width: 212px;
+  color: #ffffff;
+}
+
+.text button:focus,
+.text button:hover {
+  color: #ffffff;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.19);
+  background-color: #ffffff;
+}
+
+.image-card {
+  width: 166px;
+  height: 163px;
+}
+
+.cards {
+  display: flex;
+  margin: 40px auto !important;
+}
+
+.card-2 {
+  position: relative;
+  z-index: 2;
+  height: 500px;
+  box-shadow: 0px 10px 39px #867ff67a;
+}
+
+.card-1 {
+  left: 20px;
+}
+
+.card-3 {
+  right: 20px;
+}
+
+.card-1,
+.card-3 {
+  box-shadow: 0px 10px 39px #867ff67a;
+  z-index: 1;
+  position: relative;
+  height: 400px;
+  top: 50px;
+}
+
+.btn-card-2 {
+  background: #733fff 0% 0% no-repeat padding-box;
+  border: 2px solid #733fff;
+  border-radius: 32px;
+  opacity: 1;
+  width: 212px;
+  height: 36px;
+  color: #ffffff;
+}
+
+.btn-card-1,
+.btn-card-3 {
+  border: 2px solid #eff0f0;
+  border-radius: 32px;
+  opacity: 1;
+  text-align: center;
+  width: 212px;
+  color: #676768;
+}
+
+.card-image {
+  position: relative;
+  z-index: 1;
+}
+
+.fingerprint {
+  position: relative;
+  z-index: 2;
+  top: 30;
+  background: red !important;
+}
