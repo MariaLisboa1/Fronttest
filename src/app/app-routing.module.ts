@@ -2,15 +2,18 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./security/login/login.component";
 import { RegisterComponent } from "./core/components/register/register.component";
-import { HomeComponent } from "./core/components/home/home.component";
+import { LoggedInGuard } from "./security/loggedin.guard";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "home", component: HomeComponent }
+  {
+    path: "home",
+    loadChildren: "./core/components/home/home.module#homeModule",
+    canLoad: [LoggedInGuard]
+  }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

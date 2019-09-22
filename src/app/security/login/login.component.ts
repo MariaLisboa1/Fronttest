@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UsersService } from "./users.service";
+import { Toast } from "../../shared/helpers/Toast/toast";
+import { NotificationService } from "src/app/shared/messages/notification.service";
 
 @Component({
   selector: "app-login",
@@ -12,7 +15,11 @@ export class LoginComponent implements OnInit {
   show: boolean = false;
   errorLogin: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: UsersService,
+    private notifictionService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -21,8 +28,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(customerData) {
-    // Process checkout data here
-    console.warn("Your order has been submitted", customerData);
+  onSubmit() {
+    this.loginService
+      .login(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe(
+        res => {
+          this.notifictionService.notify("Seja bem-vindo(a)");
+        },
+        err => {
+          console.log(err);
+
+          this.notifictionService.notify("Dados inválidos");
+        }
+      );
   }
 }

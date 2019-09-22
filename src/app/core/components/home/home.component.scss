@@ -4,7 +4,7 @@
   width: 980px;
   height: 900px;
   opacity: 1;
-  z-index: 1;
+  z-index: -2;
   position: absolute;
 }
 
@@ -50,32 +50,40 @@
 }
 
 .cards {
+  overflow: hidden;
+  height: auto;
   display: flex;
   margin: 40px auto !important;
 }
 
 .card-2 {
-  position: relative;
   z-index: 2;
   height: 500px;
   box-shadow: 0px 10px 39px #867ff67a;
 }
 
 .card-1 {
-  left: 20px;
+  left: 19%;
+  overflow: hidden;
+  height: auto;
 }
 
 .card-3 {
-  right: 20px;
+  right: 19%;
+  overflow: hidden;
+  height: auto;
 }
 
 .card-1,
 .card-3 {
   box-shadow: 0px 10px 39px #867ff67a;
-  z-index: 1;
+  z-index: -1 !important;
   position: relative;
   height: 400px;
   top: 50px;
+}
+
+.btn-card {
 }
 
 .btn-card-2 {
@@ -85,7 +93,9 @@
   opacity: 1;
   width: 212px;
   height: 36px;
+
   color: #ffffff;
+  margin-top: 40px;
 }
 
 .btn-card-1,
@@ -100,12 +110,89 @@
 
 .card-image {
   position: relative;
-  z-index: 1;
+
+  width: 166px;
+  height: 163px;
+  z-index: -1;
+}
+
+.card-image-item {
+  width: 117px;
+  height: 115px;
 }
 
 .fingerprint {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  top: 30;
-  background: red !important;
+  width: 42px;
+  height: 44px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.fingerprint-center {
+  top: 140px;
+}
+
+.fingerprint-item {
+  top: 120px;
+}
+
+.footer-card {
+  width: 297px;
+  z-index: -2;
+  position: relative;
+  bottom: 30px;
+}
+
+.footer-card-item {
+  width: 297px;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-card-item-1 {
+  bottom: 30px;
+  left: 190px;
+}
+
+.footer-card-item-3 {
+  bottom: 30px;
+  right: 190px;
+}
+
+.footer {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  padding: 30px;
+  opacity: 1;
+  height: 467px;
+  overflow: hidden !important;
+}
+
+.footer::before {
+  display: block;
+  content: " ";
+  background: #e0e1e2;
+  height: 1px;
+}
+
+ul {
+  margin-top: 120px;
+}
+
+li {
+  margin-top: 20px;
+}
+
+a {
+  color: #707070;
+}
+
+.bg-front-footer {
+  position: relative;
+  opacity: 1;
+  left: 600px !important;
+  bottom: 200px;
 }

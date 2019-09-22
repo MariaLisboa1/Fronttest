@@ -5,19 +5,20 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./security/login/login.component";
 import { SharedModule } from "./shared/shared.module";
-import { HeaderComponent } from "./shared/components/header/header.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from "./core/components/register/register.component";
-import { ButtonComponent } from "./shared/components/button/button.component";
+import { CoreModule } from "./core/core.module";
 import { HomeComponent } from "./core/components/home/home.component";
+import { UsersService } from "./security/login/users.service";
+import { HttpClientModule } from "@angular/common/http";
+import { Toast } from "./shared/helpers/Toast/toast";
+import { LoggedInGuard } from "./security/loggedin.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
     RegisterComponent,
-    ButtonComponent,
     HomeComponent
   ],
   imports: [
@@ -25,9 +26,11 @@ import { HomeComponent } from "./core/components/home/home.component";
     AppRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UsersService, Toast, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
