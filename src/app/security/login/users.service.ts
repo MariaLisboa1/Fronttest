@@ -41,4 +41,36 @@ export class UsersService {
     this.user = undefined;
     this.router.navigate(["/login"]);
   }
+
+  register(
+    nameSocialReason,
+    cpf,
+    phone,
+    email,
+    password,
+    cep,
+    publicplace,
+    num,
+    neighborhood
+  ) {
+    return this.http.post(`${environment.urlApi}/register`, {
+      nameSocialReason,
+      cpf,
+      phone,
+      email,
+      password,
+      cep,
+      publicplace,
+      num,
+      neighborhood
+    });
+  }
+
+  redefinePassword(email, password, confirmPassword) {
+    return this.http.put(`${environment.urlApi}/redefinePassword`, {
+      email,
+      password,
+      confirmPassword
+    });
+  }
 }

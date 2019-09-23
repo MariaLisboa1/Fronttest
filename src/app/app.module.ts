@@ -13,13 +13,15 @@ import { UsersService } from "./security/login/users.service";
 import { HttpClientModule } from "@angular/common/http";
 import { Toast } from "./shared/helpers/Toast/toast";
 import { LoggedInGuard } from "./security/loggedin.guard";
+import { RedefinePasswordComponent } from "./core/components/redefine-password/redefine-password.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    RedefinePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UsersService } from "src/app/security/login/users.service";
+import { NotificationService } from "src/app/shared/messages/notification.service";
 
 @Component({
   selector: "app-register",
@@ -12,7 +14,11 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private registerService: UsersService,
+    private notifictionService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -29,7 +35,27 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(customerData) {
-    // Process checkout data here
-    console.warn("Your order has been submitted", customerData);
+    this.registerService
+      .register(
+        this.registerForm.value.nameSocialReason,
+        this.registerForm.value.cpf,
+        this.registerForm.value.phone,
+        this.registerForm.value.email,
+        this.registerForm.value.password,
+        this.registerForm.value.cep,
+        this.registerForm.value.publicPlace,
+        this.registerForm.value.num,
+        this.registerForm.value.neighborhood
+      )
+      .subscribe(
+        res => {
+          this.notifictionService.notify("Conta criada com sucesso.");
+        },
+        err => {
+          this.notifictionService.notify(
+            "Ocorreu um erro, por favor tente mais tarde."
+          );
+        }
+      );
   }
 }
