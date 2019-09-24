@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit(customerData) {
+  onSubmit() {
     this.registerService
       .register(
         this.registerForm.value.nameSocialReason,
@@ -50,11 +50,13 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         res => {
           this.notifictionService.notify("Conta criada com sucesso.");
+          console.log(res);
         },
         err => {
           this.notifictionService.notify(
             "Ocorreu um erro, por favor tente mais tarde."
           );
+          console.log(err);
         }
       );
   }

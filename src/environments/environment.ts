@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://localhost:3333"
+  urlApi: "https://apipraxios.herokuapp.com"
 };
 
 /*

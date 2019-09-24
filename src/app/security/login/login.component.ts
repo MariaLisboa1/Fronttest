@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UsersService } from "./users.service";
 import { Toast } from "../../shared/helpers/Toast/toast";
+import toastr from "toastr";
 import { NotificationService } from "src/app/shared/messages/notification.service";
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: UsersService,
-    private notifictionService: NotificationService
+    private notifictionService: NotificationService,
+    private toast: Toast
   ) {}
 
   ngOnInit() {
@@ -33,12 +35,11 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         res => {
-          this.notifictionService.notify("Seja bem-vindo(a)");
+          this.toast.emitToastSuccess("Seja bem-vindo(a)");
         },
         err => {
           console.log(err);
-
-          this.notifictionService.notify("Dados inválidos");
+          this.toast.emitToastError("Dados inválidos", "Erro");
         }
       );
   }

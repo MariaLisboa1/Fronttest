@@ -1,5 +1,12 @@
 .page-footer {
   overflow: hidden;
-  height: 60px;
-  margin-top: -50px;
+  height: 80px;
+  margin-top: 60px;
+}
+
+@media (max-width: 850px) {
+  .page-footer {
+    bottom: 0;
+    position: fixed;
+  }
 }

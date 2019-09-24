@@ -2,21 +2,25 @@
 
 <div class="container form" style="margin: 10% auto; max-width: 350px;">
   <h2>Entrar</h2>
-  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+  <form class="form-login" [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)">
     <div class="row">
       <div class="col-12">
         <div class="form-group">
-          <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
+          <input type="email" class="form-control" formControlName="email"
+            placeholder="E-mail">
         </div>
       </div>
       <div class="col-12">
         <div class="form-group">
-          <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+          <input type="password" class="form-control" formControlName="password"
+            placeholder="Senha">
         </div>
       </div>
 
-      <div class="col-12">
-        <a class="text-right forgot" [routerLink]="['/redefinePassword']">ESQUECEU SUA SENHA?</a>
+      <div class="col-12 py-2 text-right">
+        <a class="forgot" [routerLink]="['/redefinePassword']">ESQUECEU
+          SUA SENHA?</a>
       </div>
 
       <div class="row">
