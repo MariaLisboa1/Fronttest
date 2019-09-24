@@ -1,5 +1,5 @@
 <app-header></app-header>
-<!-- 
+<!--
 <div class="container form" style="margin: 5% auto;max-width: 980px;">
   <h2>Cadastrar</h2>
 
@@ -76,39 +76,59 @@
 
 <div class="form clearFix" style="margin: 5% auto;max-width: 980px;">
 
-  <form [formGroup]="registerForm" class="clearFix"
-    (ngSubmit)="onSubmit(registerForm.value)">
+  <form [formGroup]="registerForm" class="clearFix" (ngSubmit)="onSubmit(registerForm.value)">
     <h2 class="my-4">Cadastrar</h2>
-
 
     <div class="float-left">
 
       <h5 class="pr-1 pl-1">Informações Pessoais</h5>
 
       <div class="form-group pr-1 pl-1">
-        <input type="text" formControlName="nameSocialReason"
-          class="form-control" placeholder="Nome/Razão Social">
+        <input type="text" formControlName="nameSocialReason" class="form-control" placeholder="Nome/Razão Social*">
+        <p *ngIf="registerForm.get('nameSocialReason').invalid && (registerForm.get('nameSocialReason').dirty || registerForm.get('nameSocialReason').touched)"
+          class="text-danger">
+          Campo obrigatorio.
+        </p>
       </div>
 
       <div class="float-left form-group pr-1 pl-1">
-        <input type="text" formControlName="cpf" class="form-control"
-          placeholder="CPF">
+        <input type="text" mask="000.000.000-00" formControlName="cpf" class="form-control"
+          (ngModelChange)="validateCep($event)" placeholder="CPF*">
+        <div *ngIf="registerForm.get('cpf').getError('cpfNotValid')">
+          <p class="text-danger">Por favor digite um CPF válido.</p>
+        </div>
+        <p *ngIf="registerForm.get('cpf').invalid && (registerForm.get('cpf').dirty || registerForm.get('cpf').touched)"
+          class="text-danger">
+          Campo obrigatorio.
+        </p>
+
       </div>
 
 
       <div class="float-right form-group pr-1 pl-1">
-        <input type="text" formControlName="phone" class="form-control"
-          placeholder="Telefone">
+        <input type="text" mask="(00)0 0000-0000" formControlName="phone" class="form-control" placeholder="Telefone*">
+        <p *ngIf="registerForm.get('phone').invalid && (registerForm.get('phone').dirty || registerForm.get('phone').touched)"
+          class="text-danger">
+          Campo obrigatorio.
+        </p>
       </div>
 
       <div class="form-group pr-1 pl-1">
-        <input type="email" formControlName="email" class="form-control"
-          placeholder="E-mail">
+        <input type="email" formControlName="email" class="form-control" placeholder="E-mail*">
+        <p *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+          class="text-danger">
+          Campo obrigatorio.
+        </p>
       </div>
 
-      <div class="form-group pr-1 pl-1">
-        <input type="password" formControlName="password" class="form-control"
-          placeholder="Senha">
+      <div class="form-group pr-1 pl-1 left-inner-addon">
+        <i class="fa" [class.fa-unlock]="viewPassword" [class.fa-unlock-alt]="!viewPassword" aria-hidden="true"
+          (click)="getPassword()"></i>
+        <input type="password" id="password" formControlName="password" class="form-control" placeholder="Senha*">
+        <p *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)"
+          class="text-danger">
+          Campo obrigatorio.
+        </p>
       </div>
 
     </div>
@@ -119,35 +139,47 @@
         <h5 class="pr-1 pl-1">Endereço</h5>
 
         <div class="float-left form-group pr-1 pl-1">
-          <input type="text" formControlName="cep" class="form-control"
-            placeholder="CEP">
+          <input type="text" maxlength="8" (ngModelChange)="validateCep($event)" formControlName="cep"
+            class="form-control" placeholder="CEP*">
+          <p *ngIf="registerForm.get('cep').invalid && (registerForm.get('cep').dirty || registerForm.get('cep').touched)"
+            class="text-danger">
+            Campo obrigatorio.
+          </p>
         </div>
 
         <div class="float-right form-group pr-1 pl-1">
-          <input type="text" formControlName="publicPlace" class="form-control"
-            placeholder="Logradouro">
+          <input type="text" formControlName="publicPlace" class="form-control" placeholder="Logradouro*">
+          <p *ngIf="registerForm.get('publicPlace').invalid && (registerForm.get('publicPlace').dirty || registerForm.get('publicPlace').touched)"
+            class="text-danger">
+            Campo obrigatorio.
+          </p>
         </div>
 
         <div class="form-group pr-1 pl-1">
-          <input type="text" formControlName="num" class="form-control"
-            placeholder="Número">
+          <input type="text" formControlName="num" class="form-control" placeholder="Número*">
+          <p *ngIf="registerForm.get('num').invalid && (registerForm.get('num').dirty || registerForm.get('num').touched)"
+            class="text-danger">
+            Campo obrigatorio.
+          </p>
         </div>
 
         <div class="float-right form-group pr-1 pl-1">
-          <input type="text" formControlName="neighborhood" class="form-control"
-            placeholder="Bairro">
+          <input type="text" formControlName="neighborhood" class="form-control" placeholder="Bairro*">
+          <p *ngIf="registerForm.get('neighborhood').invalid && (registerForm.get('neighborhood').dirty || registerForm.get('neighborhood').touched)"
+            class="text-danger">
+            Campo obrigatorio.
+          </p>
         </div>
 
       </div>
     </div>
     <div class="button text-center py-4">
-      <app-button
-        [title]="title"
-        (onSubmit)="($event)"></app-button>
+      <app-button [title]="title" (onSubmit)="($event)" [disabled]="registerForm.invalid"></app-button>
+      <!-- <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">CLIQUE </button> -->
     </div>
 
     <div class="text-center">
-      <a [routerLink]="['/login']">Já tem uma conta?
+      <a class="have-account" [routerLink]="['/login']">Já tem uma conta?
         Faça login</a>
     </div>
 

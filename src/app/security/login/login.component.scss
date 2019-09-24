@@ -1,3 +1,15 @@
+a {
+  text-decoration: none;
+}
+
 .forgot {
   color: #585859;
+}
+
+.forgot:before {
+  background-color: #585859;
+}
+
+.dont-have-account:before {
+  background-color: #0056B3;
 }

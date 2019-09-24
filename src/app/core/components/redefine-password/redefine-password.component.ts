@@ -15,8 +15,12 @@ export class RedefinePasswordComponent implements OnInit {
 
   redefine = [
     { name: "E-mail", type: "email", formName: "email" },
-    { name: "password", type: "password", formName: "password" },
-    { name: "confirmPassword", type: "password", formName: "confirmPassword" }
+    { name: "Senha nova", type: "password", formName: "password" },
+    {
+      name: "Confirme a nova senha",
+      type: "password",
+      formName: "confirmPassword"
+    }
   ];
 
   constructor(

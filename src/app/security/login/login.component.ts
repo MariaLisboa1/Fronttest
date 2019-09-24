@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UsersService } from "./users.service";
 import { Toast } from "../../shared/helpers/Toast/toast";
-import toastr from "toastr";
-import { NotificationService } from "src/app/shared/messages/notification.service";
 
 @Component({
   selector: "app-login",
@@ -19,7 +17,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: UsersService,
-    private notifictionService: NotificationService,
     private toast: Toast
   ) {}
 

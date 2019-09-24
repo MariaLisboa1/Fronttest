@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: "redefinePassword", component: RedefinePasswordComponent },
   {
     path: "home",
-    loadChildren: "./core/components/home/home.module#homeModule",
-    canLoad: [LoggedInGuard]
+    loadChildren: "./core/components/home/home.module#homeModule"
+    // canLoad: [LoggedInGuard]
   }
 ];
 @NgModule({

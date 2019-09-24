@@ -8,19 +8,19 @@ import { SharedModule } from "./shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from "./core/components/register/register.component";
 import { CoreModule } from "./core/core.module";
-import { HomeComponent } from "./core/components/home/home.component";
 import { UsersService } from "./security/login/users.service";
 import { HttpClientModule } from "@angular/common/http";
 import { Toast } from "./shared/helpers/Toast/toast";
 import { LoggedInGuard } from "./security/loggedin.guard";
 import { RedefinePasswordComponent } from "./core/components/redefine-password/redefine-password.component";
 
+import { NgxMaskModule } from "ngx-mask";
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     RedefinePasswordComponent
   ],
   imports: [
@@ -30,7 +30,8 @@ import { RedefinePasswordComponent } from "./core/components/redefine-password/r
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [UsersService, Toast, LoggedInGuard],
   bootstrap: [AppComponent]
