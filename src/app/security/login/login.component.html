@@ -2,16 +2,22 @@
 
 <div class="container form" style="margin: 10% auto; max-width: 350px;">
   <h2>Entrar</h2>
-  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+  <form class="form-login" [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)">
     <div class="row">
       <div class="col-12">
         <div class="form-group">
-          <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
+          <input type="email" required class="form-control"
+            formControlName="email"
+            placeholder="E-mail">
         </div>
       </div>
       <div class="col-12">
-        <div class="form-group">
-          <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+        <div class="form-group left-inner-addon">
+          <app-view-password></app-view-password>
+          <input type="password" required class="form-control"
+            formControlName="password"
+            placeholder="Senha" id="password">
         </div>
       </div>
 
@@ -22,11 +28,15 @@
 
       <div class="row">
         <div class="col-12 text-center">
-          <app-button [title]="title" (onSubmit)="($event)"></app-button>
+          <app-button [title]="title"
+            [disabled]="loginForm.invalid"
+            (onSubmit)="($event)"></app-button>
+
         </div>
 
         <div class="col-12 text-center py-4">
-          <a class="dont-have-account" [routerLink]="['/register']">Não tem um conta?
+          <a class="dont-have-account" [routerLink]="['/register']">Não tem um
+            conta?
             Cadastre-se</a>
         </div>
       </div>

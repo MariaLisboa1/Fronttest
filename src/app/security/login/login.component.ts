@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UsersService } from "./users.service";
 import { Toast } from "../../shared/helpers/Toast/toast";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -13,11 +14,12 @@ export class LoginComponent implements OnInit {
   title: string = "Entrar";
   show: boolean = false;
   errorLogin: boolean = false;
-
+  // error;
   constructor(
     private fb: FormBuilder,
     private loginService: UsersService,
-    private toast: Toast
+    private toast: Toast,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -32,10 +34,12 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         res => {
+          console.log(res);
           this.toast.emitToastSuccess("Seja bem-vindo(a)");
+          // this.router.navigate(["/home"]);
         },
         err => {
-          console.log(err);
+          // this.error = true;
           this.toast.emitToastError("Dados inválidos", "Erro");
         }
       );

@@ -6,7 +6,8 @@
 
 @media (max-width: 850px) {
   .page-footer {
-    bottom: 0;
-    // position: fixed;
+    position: absolute;
+    margin-top: 0;
+    margin-top: 160px;
   }
 }

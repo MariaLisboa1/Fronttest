@@ -4,6 +4,7 @@ import { UsersService } from "src/app/security/login/users.service";
 
 import { GenericValidator } from "src/app/shared/helpers/validateCpf/validateCpf";
 import { Toast } from "src/app/shared/helpers/Toast/toast";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-register",
@@ -12,50 +13,34 @@ import { Toast } from "src/app/shared/helpers/Toast/toast";
 })
 export class RegisterComponent implements OnInit {
   title: string = "Cadastrar";
-  viewPassword: boolean = false;
-  // endereco = ["CEP", "Logradouro", "Numero", "Bairro"];
 
   registerForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private registerService: UsersService,
-    private toast: Toast
+    private toast: Toast,
+    private route: Router
   ) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
       nameSocialReason: this.fb.control("", [Validators.required]),
-      cpf: this.fb.control(
-        { value: null, disabled: false },
+      cpf: this.fb.control({ value: null, disabled: false }, [
+        Validators.required,
         GenericValidator.isValidCpf()
-      ),
+      ]),
       phone: this.fb.control("", [Validators.required]),
       email: this.fb.control("", [Validators.required]),
-      password: this.fb.control("", [Validators.required]),
+      password: this.fb.control("", [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
       cep: this.fb.control("", [Validators.required]),
       publicPlace: this.fb.control("", [Validators.required]),
       num: this.fb.control("", [Validators.required]),
       neighborhood: this.fb.control("", [Validators.required])
     });
-  }
-
-  validateCep(validate) {
-    console.log("hi");
-
-    const getValidate = this.registerForm.get("cpf").getError("cpfNotValid");
-    console.log(getValidate);
-
-    if (getValidate) {
-      this.toast.emitToastError("Digite um CPF válido.", "Erro");
-    }
-  }
-
-  getPassword() {
-    const getId = <HTMLInputElement>document.getElementById("password");
-
-    getId.type = getId.type == "password" ? "text" : "password";
-    this.viewPassword = getId.type == "password" ? false : true;
   }
 
   onSubmit() {
@@ -74,13 +59,15 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         res => {
           this.toast.emitToastSuccess("Conta criada com sucesso.");
-          console.log(res);
+          this.route.navigate(["/login"]);
         },
         err => {
-          this.toast.emitToastError(
-            "Ocorreu um erro, por favor tente mais tarde.",
-            "Erro"
-          );
+          const error = err.error.error;
+          const messageErro =
+            error === "User already exists."
+              ? "Usuário já existe."
+              : "Ocorreu um erro, por favor tente mais tarde";
+          this.toast.emitToastError(messageErro, "Erro");
           console.log(err);
         }
       );

@@ -7,6 +7,8 @@ import { ButtonComponent } from "./components/button/button.component";
 import { UserDetailComponent } from "./components/header/user-detail/user-detail.component";
 import { NotificationService } from "./messages/notification.service";
 import { SnackbarComponent } from "./messages/snackbar/snackbar.component";
+import { InputComponent } from "./components/input/input.component";
+import { ViewPasswordComponent } from "./components/view-password/view-password.component";
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -15,7 +17,9 @@ import { SnackbarComponent } from "./messages/snackbar/snackbar.component";
     HeaderComponent,
     ButtonComponent,
     UserDetailComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    InputComponent,
+    ViewPasswordComponent
   ],
   exports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { SnackbarComponent } from "./messages/snackbar/snackbar.component";
     FooterComponent,
     HeaderComponent,
     ButtonComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    InputComponent,
+    ViewPasswordComponent
   ],
   providers: [NotificationService]
 })

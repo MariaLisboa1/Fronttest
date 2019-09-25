@@ -1,1 +1,10 @@
-<button type="submit" class="btn button">{{title}}</button>
+<button type="submit" [class.desabilita]="disabled" [disabled]="disabled"
+  class="btn button">
+  <span>{{title}}</span>
+</button>
+
+<!-- -->
+
+<!-- [class.is-loading]="buttonClass" -->
+<!-- [class.check]="buttonClass" [class.is-fail]="fail" -->
+<!-- (click)="clickButton()" -->

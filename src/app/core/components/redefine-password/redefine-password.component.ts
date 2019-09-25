@@ -3,6 +3,7 @@ import { NotificationService } from "src/app/shared/messages/notification.servic
 import { UsersService } from "src/app/security/login/users.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Toast } from "src/app/shared/helpers/Toast/toast";
 
 @Component({
   selector: "app-redefine-password",
@@ -26,7 +27,7 @@ export class RedefinePasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private redefineService: UsersService,
-    private notifictionService: NotificationService,
+    private toast: Toast,
     private router: Router
   ) {}
 
@@ -47,13 +48,14 @@ export class RedefinePasswordComponent implements OnInit {
       )
       .subscribe(
         res => {
-          this.notifictionService.notify("Senha alterada com sucesso.");
+          this.toast.emitToastSuccess("Senha alterada com sucesso.");
           this.router.navigate(["/login"]);
         },
         err => {
           console.log(err);
-          this.notifictionService.notify(
-            "Senhas não são iguais ou email não existe."
+          this.toast.emitToastError(
+            "Senhas não são iguais ou email não existe.",
+            "Erro"
           );
         }
       );

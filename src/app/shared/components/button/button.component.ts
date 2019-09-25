@@ -9,9 +9,8 @@ export class ButtonComponent implements OnInit {
   @Input() title;
   @Output() button = new EventEmitter();
   @Input() disabled;
+
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.disabled);
-  }
+  ngOnInit() {}
 }
