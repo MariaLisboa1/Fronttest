@@ -76,25 +76,74 @@
 
 <div class="form clearFix" style="margin: 5% auto;max-width: 980px;">
 
-  <form [formGroup]="registerForm" class="clearFix"
-    (ngSubmit)="onSubmit(registerForm.value)">
+  <form [formGroup]="registerForm" class="clearFix" (ngSubmit)="onSubmit(registerForm.value)">
     <h2 class="my-4">Cadastrar</h2>
 
     <div class="float-left">
 
       <h5 class="pr-1 pl-1">Informações Pessoais</h5>
 
+
+      <div class="form_line">
+        <label path="title">Title:</label>
+        <div class="form_controls">
+          <input type="text" class="form-control" #title placeholder="Title" (keyup.enter)="updateTitle(title.value)"
+            (blur)="updateTitle(title.value)" />
+        </div>
+      </div>
+      <div class="form_line">
+        <label>Image:</label>
+        <div class="form_controls">
+          <div class="upload_button_holder">
+            <label class="upload_button" for="fileupload">Upload</label>
+            <input type="file" id="fileupload" #fileInput ng2FileSelect [style.display]="'none'" [uploader]="uploader"
+              (change)="fileInput.value=''" multiple />
+          </div>
+          <div class="progress" *ngIf="progressTrue">
+            <div style="background: #7626ff;" class="progress-bar" role="progressbar" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100" [style.width.%]="progress">
+              {{progress}}%</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group pr-1 pl-1">
+        <div class="form-group input-wrapper">
+          <img class="img-thumbnail" width="150" height="150" [src]="imageSrc || personSrc" alt="Sua imagem" />
+          <br>
+          <label for='input-file'>
+            Selecionar um arquivo*
+          </label>
+          <input class="cloudinary_fileupload" type='file' id='input-file' name="photo" type='file' value=''
+            (change)="initializeUploadWidget($event)" />
+          <span id='file-name'></span>
+          <!-- mensagem de erro -->
+          <!-- <div *ngIf="uploadResponse.status === 'error'">
+            {{ uploadResponse.message }}
+          </div> -->
+          <!-- porcentagem do envio da foto -->
+          <!-- <div *ngIf="uploadResponse.status === 'progress'">
+            <div class="text-primary" role="progressbar" [style.width.%]="uploadResponse.message" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              CARREGANDO...POR FAVOR AGUARDE!
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+
+
       <div class="form-group pr-1 pl-1">
         <app-input>
-          <input type="text" formControlName="nameSocialReason"
-            class="form-control" placeholder="Nome/Razão Social*">
+          <input type="text" formControlName="nameSocialReason" class="form-control" placeholder="Nome/Razão Social*">
         </app-input>
       </div>
 
+
       <div class="float-left form-group pr-1 pl-1">
         <app-input>
-          <input type="text" mask="000.000.000-00" formControlName="cpf"
-            class="form-control" placeholder="CPF*">
+          <input type="text" mask="000.000.000-00" formControlName="cpf" class="form-control" placeholder="CPF*">
         </app-input>
 
 
@@ -108,23 +157,21 @@
 
       <div class="float-right form-group pr-1 pl-1">
         <app-input>
-          <input type="text" mask="(00)0 0000-0000" formControlName="phone"
-            class="form-control" placeholder="Telefone*">
+          <input type="text" mask="(00)0 0000-0000" formControlName="phone" class="form-control"
+            placeholder="Telefone*">
         </app-input>
       </div>
 
       <div class="form-group pr-1 pl-1">
         <app-input>
-          <input type="email" formControlName="email" class="form-control"
-            placeholder="E-mail*">
+          <input type="email" formControlName="email" class="form-control" placeholder="E-mail*">
         </app-input>
       </div>
 
       <div class="form-group pr-1 pl-1 left-inner-addon">
         <app-view-password></app-view-password>
         <app-input>
-          <input type="password" id="password" formControlName="password"
-            class="form-control" placeholder="Senha*">
+          <input type="password" id="password" formControlName="password" class="form-control" placeholder="Senha*">
         </app-input>
 
       </div>
@@ -139,30 +186,26 @@
 
         <div class="float-left form-group pr-1 pl-1">
           <app-input>
-            <input type="text" mask="00000-000" formControlName="cep"
-              class="form-control" placeholder="CEP*">
+            <input type="text" mask="00000-000" formControlName="cep" class="form-control" placeholder="CEP*">
           </app-input>
 
         </div>
 
         <div class="float-right form-group pr-1 pl-1">
           <app-input>
-            <input type="text" formControlName="publicPlace"
-              class="form-control" placeholder="Logradouro*">
+            <input type="text" formControlName="publicPlace" class="form-control" placeholder="Logradouro*">
           </app-input>
         </div>
 
         <div class="form-group pr-1 pl-1">
           <app-input>
-            <input type="text" formControlName="num" class="form-control"
-              placeholder="Número*">
+            <input type="text" formControlName="num" class="form-control" placeholder="Número*">
           </app-input>
         </div>
 
         <div class="float-right form-group pr-1 pl-1">
           <app-input>
-            <input type="text" formControlName="neighborhood"
-              class="form-control" placeholder="Bairro*">
+            <input type="text" formControlName="neighborhood" class="form-control" placeholder="Bairro*">
           </app-input>
 
         </div>
@@ -170,8 +213,7 @@
       </div>
     </div>
     <div class="button text-center py-4">
-      <app-button [title]="title" (onSubmit)="($event)"
-        [disabled]="registerForm.invalid"></app-button>
+      <app-button [title]="title" (onSubmit)="($event)" [disabled]="registerForm.invalid"></app-button>
       <!-- <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">CLIQUE </button> -->
     </div>
 

@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res);
           this.toast.emitToastSuccess("Seja bem-vindo(a)");
-          // this.router.navigate(["/home"]);
+          this.router.navigate(["/home"]);
+          // this.router.navigate(["/EditProfile"]);
         },
         err => {
           // this.error = true;

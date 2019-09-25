@@ -4,7 +4,7 @@ import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
 import { User } from "./user.model";
 import { tap } from "rxjs/operators";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { filter } from "rxjs/operators";
 
 @Injectable({
@@ -15,10 +15,15 @@ export class UsersService {
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd) => (this.lastUrl = e.url));
+
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationStart))
+      .subscribe((e: NavigationEnd) => (this.currentUrl = e.url));
   }
 
   user: User;
   lastUrl: string;
+  currentUrl: string;
 
   isLoggedIn(): boolean {
     return this.user !== undefined;
@@ -71,6 +76,15 @@ export class UsersService {
       email,
       password,
       confirmPassword
+    });
+  }
+
+  editProfile({ email, oldPassword, newPassword, name }) {
+    return this.http.put(`${environment.urlApi}/editProfile`, {
+      email,
+      oldPassword,
+      newPassword,
+      name
     });
   }
 }

@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class="container form" style="margin: 10% auto; max-width: 350px;">
+  <h2>Editar perfil</h2>
+
+  <form class="form-login" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="name" placeholder="Nome/Razão social">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="oldPassword" placeholder="Senha atual">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="newPassword" placeholder="Nova senha">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="col-12 mb-3 text-right">
+      <a class="back" [routerLink]="['/login']">Voltar</a>
+    </div> -->
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <app-button [title]="title" (onSubmit)="($event)"></app-button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

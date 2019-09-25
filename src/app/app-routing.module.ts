@@ -4,6 +4,7 @@ import { LoginComponent } from "./security/login/login.component";
 import { RegisterComponent } from "./core/components/register/register.component";
 import { LoggedInGuard } from "./security/loggedin.guard";
 import { RedefinePasswordComponent } from "./core/components/redefine-password/redefine-password.component";
+import { EditProfileComponent } from "./core/components/edit-profile/edit-profile.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [
     path: "home",
     loadChildren: "./core/components/home/home.module#homeModule"
     // canLoad: [LoggedInGuard]
+  },
+  {
+    path: "EditProfile",
+    component: EditProfileComponent
   }
 ];
 @NgModule({

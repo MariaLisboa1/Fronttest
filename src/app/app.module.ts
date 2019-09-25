@@ -16,12 +16,18 @@ import { RedefinePasswordComponent } from "./core/components/redefine-password/r
 
 import { NgxMaskModule } from "ngx-mask";
 
+import { FileSelectDirective } from "ng2-file-upload";
+
+import { CloudinaryModule } from "@cloudinary/angular-5.x";
+import * as Cloudinary from "cloudinary-core";
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    RedefinePasswordComponent
+    RedefinePasswordComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,11 @@ import { NgxMaskModule } from "ngx-mask";
     ReactiveFormsModule,
     CoreModule,
     HttpClientModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    CloudinaryModule.forRoot(Cloudinary, {
+      cloud_name: "fronttest",
+      upload_preset: "xsx2tuja"
+    })
   ],
   providers: [UsersService, Toast, LoggedInGuard],
   bootstrap: [AppComponent]
