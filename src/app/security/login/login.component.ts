@@ -38,10 +38,8 @@ export class LoginComponent implements OnInit {
           console.log(res);
           this.toast.emitToastSuccess("Seja bem-vindo(a)");
           this.router.navigate(["/home"]);
-          // this.router.navigate(["/EditProfile"]);
         },
         err => {
-          // this.error = true;
           this.toast.emitToastError("Dados inválidos", "Erro");
         }
       );

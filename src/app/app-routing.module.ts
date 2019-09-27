@@ -5,15 +5,19 @@ import { RegisterComponent } from "./core/components/register/register.component
 import { LoggedInGuard } from "./security/loggedin.guard";
 import { RedefinePasswordComponent } from "./core/components/redefine-password/redefine-password.component";
 import { EditProfileComponent } from "./core/components/edit-profile/edit-profile.component";
+import { HomeComponent } from "./core/components/home/home.component";
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
-  { path: "login", component: LoginComponent },
+  {
+    path: "login",
+    loadChildren: "./security/login/login.module#loginModule"
+  },
   { path: "register", component: RegisterComponent },
   { path: "redefinePassword", component: RedefinePasswordComponent },
   {
     path: "home",
-    loadChildren: "./core/components/home/home.module#homeModule"
+    component: HomeComponent
+    // loadChildren: "./core/components/home/home.module#homeModule"
     // canLoad: [LoggedInGuard]
   },
   {

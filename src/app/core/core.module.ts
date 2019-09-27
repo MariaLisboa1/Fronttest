@@ -10,6 +10,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "../app-routing.module";
 import { UsersService } from "../security/login/users.service";
 import { NgxMaskModule } from "ngx-mask";
+import { loginModule } from "../security/login/login.module";
+import { HomeComponent } from "./components/home/home.component";
 
 @NgModule({
   imports: [
@@ -18,19 +20,20 @@ import { NgxMaskModule } from "ngx-mask";
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    loginModule,
     NgxMaskModule.forRoot()
   ],
   declarations: [
-    EditProfileComponent,
-    RedefinePasswordComponent,
-    LoginComponent,
     RegisterComponent,
-    RedefinePasswordComponent
+    HomeComponent,
+    RedefinePasswordComponent,
+    EditProfileComponent
   ],
   exports: [
-    RedefinePasswordComponent,
-    LoginComponent,
+    HomeComponent,
     RegisterComponent,
+    RedefinePasswordComponent,
+    EditProfileComponent,
     AppRoutingModule,
     HttpClientModule
   ],

@@ -6,8 +6,7 @@
   <form
     class="form-login"
     [formGroup]="editProfileForm"
-    (ngSubmit)="onSubmit()"
-  >
+    (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col">
         <div class="form-group">
@@ -16,18 +15,18 @@
             class="form-control"
             formControlName="name"
             placeholder="Nome/Razão social"
-          />
+            />
         </div>
       </div>
       <div class="col">
-        <div class=" input-wrapper">
+        <div class="input-wrapper">
           <img
             class="img-thumbnail"
             width="150"
             height="150"
             [src]="user.url_image || personSrc"
             alt="Sua imagem"
-          />
+            />
           <br />
           <label for="input-file">
             Selecionar um arquivo
@@ -39,7 +38,7 @@
             type="file"
             value=""
             (change)="readURL($event)"
-          />
+            />
           <span id="file-name"></span>
 
           <div class="progress" *ngIf="progressTrue">
@@ -50,8 +49,7 @@
               aria-valuenow="75"
               aria-valuemin="0"
               aria-valuemax="100"
-              [style.width.%]="progress"
-            >
+              [style.width.%]="progress">
               {{ progress }}%
             </div>
           </div>
@@ -67,7 +65,7 @@
             class="form-control"
             formControlName="oldPassword"
             placeholder="Senha atual"
-          />
+            />
         </div>
       </div>
       <div class="col">
@@ -77,7 +75,7 @@
             class="form-control"
             formControlName="newPassword"
             placeholder="Nova senha"
-          />
+            />
         </div>
       </div>
     </div>
@@ -90,7 +88,7 @@
             class="form-control"
             readonly="true"
             placeholder="{{ user.email }}"
-          />
+            />
         </div>
       </div>
       <div class="col">
@@ -100,7 +98,7 @@
             readonly="true"
             class="form-control"
             placeholder="{{ user.nameSocialReason }}"
-          />
+            />
         </div>
       </div>
     </div>
@@ -112,7 +110,7 @@
             class="form-control"
             readonly="true"
             placeholder="{{ user.neighborhood }}"
-          />
+            />
         </div>
       </div>
       <div class="col">
@@ -122,7 +120,7 @@
             readonly="true"
             class="form-control"
             placeholder="{{ user.num }}"
-          />
+            />
         </div>
       </div>
     </div>
@@ -134,7 +132,7 @@
             class="form-control"
             readonly="true"
             placeholder="{{ user.phone }}"
-          />
+            />
         </div>
       </div>
       <div class="col">
@@ -144,15 +142,14 @@
             readonly="true"
             class="form-control"
             placeholder="{{ user.publicplace }}"
-          />
+            />
         </div>
       </div>
     </div>
 
-    <div class="col-12 mb-3 text-right">
+    <!-- <div class="col-12 mb-3 text-right">
       <a class="back" [routerLink]="['/home']">Cancelar</a>
-    </div>
-
+    </div> -->
     <div class="row">
       <div class="col-12 text-center">
         <app-button [title]="title" (onSubmit)="($event)"></app-button>
