@@ -41,7 +41,7 @@ export class UsersService {
         email,
         password
       })
-      .pipe(tap(user => (this.user = user)));
+      .pipe(tap(user => (this.user = { ...user })));
   }
 
   logout() {
@@ -83,6 +83,8 @@ export class UsersService {
   }
 
   editProfile({ email, oldPassword, newPassword, name }) {
+    console.log({ email, oldPassword, newPassword, name });
+
     return this.http.put(`${environment.urlApi}/editProfile`, {
       email,
       oldPassword,

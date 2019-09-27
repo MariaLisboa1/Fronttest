@@ -9,22 +9,19 @@ import { HomeComponent } from "./core/components/home/home.component";
 import { Error404Component } from "./shared/components/error404/error404.component";
 
 const routes: Routes = [
-  {
-    path: "login",
-    loadChildren: "./security/login/login.module#loginModule"
-  },
+  { path: "login", component: LoginComponent },
+  { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "redefinePassword", component: RedefinePasswordComponent },
   {
     path: "home",
-    component: HomeComponent
-    // canActivate: [LoggedInGuard]
-    // loadChildren: "./core/components/home/home.module#homeModule"
-    // canLoad: [LoggedInGuard]
+    component: HomeComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: "EditProfile",
-    component: EditProfileComponent
+    component: EditProfileComponent,
+    canActivate: [LoggedInGuard]
   },
   { path: "**", component: Error404Component }
 ];

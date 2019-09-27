@@ -8,8 +8,8 @@ import { InputComponent } from "./components/input/input.component";
 import { ViewPasswordComponent } from "./components/view-password/view-password.component";
 import { NgxMaskModule } from "ngx-mask";
 import { AppRoutingModule } from "../app-routing.module";
-import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { Error404Component } from './components/error404/error404.component';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { Error404Component } from "./components/error404/error404.component";
 
 @NgModule({
   imports: [NgxMaskModule.forRoot(), CommonModule, AppRoutingModule],

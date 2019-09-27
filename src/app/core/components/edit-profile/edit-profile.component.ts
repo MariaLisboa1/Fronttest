@@ -25,11 +25,10 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.editProfileService.user;
-    console.log(this.user);
 
-    this.email = this.editProfileService.user.email;
     this.editProfileForm = this.fb.group({
       name: this.fb.control(""),
+      email: this.fb.control(this.user.user.email),
       oldPassword: this.fb.control("", [Validators.required]),
       newPassword: this.fb.control("", [Validators.required])
     });
@@ -60,10 +59,7 @@ export class EditProfileComponent implements OnInit {
 
       this.editProfileService.sendPhoto(photo, this.user.user.id).subscribe(
         res => {
-          // this.toast.emitToastSuccess("Conta alterada criada com sucesso.");
           console.log(res);
-
-          // this.router.navigate(["/login"]);
         },
         err => {
           this.toast.emitToastError(
@@ -77,9 +73,9 @@ export class EditProfileComponent implements OnInit {
 
   onSubmit() {
     const name = this.editProfileForm.value.name;
-    const oldPassword = this.editProfileForm.value.name;
-    const newPassword = this.editProfileForm.value.name;
-    const email = this.email;
+    const oldPassword = this.editProfileForm.value.oldPassword;
+    const newPassword = this.editProfileForm.value.newPassword;
+    const email = this.editProfileForm.value.email;
 
     this.editProfileService
       .editProfile({ email, oldPassword, newPassword, name })
