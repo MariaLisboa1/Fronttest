@@ -13,6 +13,7 @@ export class EditProfileComponent implements OnInit {
   title: string = "Salvar";
   editProfileForm: FormGroup;
   email;
+  user;
   constructor(
     private fb: FormBuilder,
     private editProfileService: UsersService,
@@ -24,12 +25,13 @@ export class EditProfileComponent implements OnInit {
     this.email = this.editProfileService.user.email;
     this.editProfileForm = this.fb.group({
       name: this.fb.control(""),
-      oldPassword: this.fb.control(""),
-      newPassword: this.fb.control("")
+      oldPassword: this.fb.control("", [Validators.required]),
+      newPassword: this.fb.control("", [Validators.required])
     });
   }
 
   onSubmit() {
+    this.user = this.editProfileService.user;
     const name = this.editProfileForm.value.name;
     const oldPassword = this.editProfileForm.value.name;
     const newPassword = this.editProfileForm.value.name;
@@ -38,7 +40,10 @@ export class EditProfileComponent implements OnInit {
     this.editProfileService
       .editProfile({ email, oldPassword, newPassword, name })
       .subscribe(
-        res => this.toast.emitToastSuccess("Dados alterados com sucesso."),
+        res => {
+          this.toast.emitToastSuccess("Dados alterados com sucesso.");
+          this.router.navigate(["/login"]);
+        },
         err =>
           this.toast.emitToastError(
             "Por favor digite a senha atual correta.",

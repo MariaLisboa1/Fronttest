@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class UserDetailComponent implements OnInit {
   constructor(private usersService: UsersService, private route: Router) {}
   edit: boolean;
+  name: string;
 
   ngOnInit() {
     this.checkUrl();
@@ -29,5 +30,9 @@ export class UserDetailComponent implements OnInit {
 
   checkUrl() {
     this.edit = this.usersService.currentUrl === "/EditProfile" ? false : true;
+  }
+
+  getName() {
+    this.name = this.usersService.user.nameSocialReason;
   }
 }

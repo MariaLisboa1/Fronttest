@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   title: string = "Entrar";
   show: boolean = false;
   errorLogin: boolean = false;
-  // error;
+
   constructor(
     private fb: FormBuilder,
     private loginService: UsersService,
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.loginForm.value);
     this.loginService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(

@@ -9,9 +9,17 @@ import { NotificationService } from "./messages/notification.service";
 import { SnackbarComponent } from "./messages/snackbar/snackbar.component";
 import { InputComponent } from "./components/input/input.component";
 import { ViewPasswordComponent } from "./components/view-password/view-password.component";
+import { NgxMaskModule } from "ngx-mask";
+import { AppRoutingModule } from "../app-routing.module";
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    NgxMaskModule.forRoot(),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
+  ],
   declarations: [
     FooterComponent,
     HeaderComponent,
@@ -22,14 +30,15 @@ import { ViewPasswordComponent } from "./components/view-password/view-password.
     ViewPasswordComponent
   ],
   exports: [
-    CommonModule,
-    FormsModule,
+    AppRoutingModule,
     FooterComponent,
     HeaderComponent,
     ButtonComponent,
     UserDetailComponent,
     InputComponent,
-    ViewPasswordComponent
+    ViewPasswordComponent,
+    CommonModule,
+    FormsModule
   ],
   providers: [NotificationService]
 })

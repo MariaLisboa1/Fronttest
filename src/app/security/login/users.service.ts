@@ -34,6 +34,8 @@ export class UsersService {
   }
 
   login(email: string, password: string): Observable<User> {
+    console.log(email, password);
+
     return this.http
       .post<User>(`${environment.urlApi}/session`, {
         email,
@@ -86,5 +88,9 @@ export class UsersService {
       newPassword,
       name
     });
+  }
+
+  sendPhoto(photo, id) {
+    return this.http.put(`${environment.urlApi}/upload/${id}`, photo);
   }
 }
