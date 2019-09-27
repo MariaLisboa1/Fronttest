@@ -10,9 +10,10 @@ import { Router } from "@angular/router";
 export class UserDetailComponent implements OnInit {
   constructor(private usersService: UsersService, private route: Router) {}
   edit: boolean;
-  name: string;
+  name;
 
   ngOnInit() {
+    this.getName();
     this.checkUrl();
   }
 
@@ -33,6 +34,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getName() {
-    this.name = this.usersService.user.nameSocialReason;
+    this.name = this.usersService.user;
+    console.log(this.usersService.user);
   }
 }

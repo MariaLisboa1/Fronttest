@@ -3,53 +3,27 @@
 <div class="container form" style="margin: 10% auto; max-width: 600px;">
   <h2>Editar perfil</h2>
 
-  <form
-    class="form-login"
-    [formGroup]="editProfileForm"
-    (ngSubmit)="onSubmit()">
+  <form class="form-login" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            placeholder="Nome/Razão social"
-            />
+          <input type="text" class="form-control" formControlName="name" placeholder="Nome/Razão social" />
         </div>
       </div>
       <div class="col">
         <div class="input-wrapper">
-          <img
-            class="img-thumbnail"
-            width="150"
-            height="150"
-            [src]="user.url_image || personSrc"
-            alt="Sua imagem"
-            />
+          <img class="img-thumbnail" width="150" height="150" [src]="user.user.url_image || personSrc"
+            alt="Sua imagem" />
           <br />
           <label for="input-file">
             Selecionar um arquivo
           </label>
-          <input
-            type="file"
-            id="input-file"
-            name="photo"
-            type="file"
-            value=""
-            (change)="readURL($event)"
-            />
+          <input type="file" id="input-file" name="photo" type="file" value="" (change)="changePhoto($event)" />
           <span id="file-name"></span>
 
           <div class="progress" *ngIf="progressTrue">
-            <div
-              style="background: #7626ff;"
-              class="progress-bar"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              [style.width.%]="progress">
+            <div style="background: #7626ff;" class="progress-bar" role="progressbar" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100" [style.width.%]="progress">
               {{ progress }}%
             </div>
           </div>
@@ -60,22 +34,12 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            formControlName="oldPassword"
-            placeholder="Senha atual"
-            />
+          <input type="password" class="form-control" formControlName="oldPassword" placeholder="Senha atual" />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            formControlName="newPassword"
-            placeholder="Nova senha"
-            />
+          <input type="password" class="form-control" formControlName="newPassword" placeholder="Nova senha" />
         </div>
       </div>
     </div>
@@ -83,66 +47,36 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            readonly="true"
-            placeholder="{{ user.email }}"
-            />
+          <input type="text" class="form-control" readonly="true" placeholder="{{ user.user.email }}" />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            readonly="true"
-            class="form-control"
-            placeholder="{{ user.nameSocialReason }}"
-            />
+          <input type="text" readonly="true" class="form-control" placeholder="{{ user.user.nameSocialReason }}" />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            readonly="true"
-            placeholder="{{ user.neighborhood }}"
-            />
+          <input type="text" class="form-control" readonly="true" placeholder="{{ user.user.neighborhood }}" />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            readonly="true"
-            class="form-control"
-            placeholder="{{ user.num }}"
-            />
+          <input type="text" readonly="true" class="form-control" placeholder="{{ user.user.num }}" />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            readonly="true"
-            placeholder="{{ user.phone }}"
-            />
+          <input type="text" class="form-control" readonly="true" placeholder="{{ user.user.phone }}" />
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <input
-            type="text"
-            readonly="true"
-            class="form-control"
-            placeholder="{{ user.publicplace }}"
-            />
+          <input type="text" readonly="true" class="form-control" placeholder="{{ user.user.publicplace }}" />
         </div>
       </div>
     </div>

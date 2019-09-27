@@ -30,13 +30,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
     this.loginService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         res => {
-          console.log(res);
-          this.toast.emitToastSuccess("Seja bem-vindo(a)");
+          localStorage.setItem("token", res.accessToken);
+          this.toast.emitToastSuccess(`Seja bem-vindo(a)`);
           this.router.navigate(["/home"]);
         },
         err => {

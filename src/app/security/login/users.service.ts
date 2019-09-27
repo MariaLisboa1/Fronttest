@@ -45,6 +45,7 @@ export class UsersService {
   }
 
   logout() {
+    localStorage.clear();
     this.user = undefined;
     this.router.navigate(["/login"]);
   }

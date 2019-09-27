@@ -14,6 +14,8 @@ export class EditProfileComponent implements OnInit {
   editProfileForm: FormGroup;
   email;
   user;
+  imageSrc;
+  selectFile: File = null;
   constructor(
     private fb: FormBuilder,
     private editProfileService: UsersService,
@@ -22,6 +24,9 @@ export class EditProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.user = this.editProfileService.user;
+    console.log(this.user);
+
     this.email = this.editProfileService.user.email;
     this.editProfileForm = this.fb.group({
       name: this.fb.control(""),
@@ -30,8 +35,47 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
+  changePhoto(event) {
+    this.selectFile = <File>event.target.files[0];
+
+    if (<File>event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+
+      const reader = new FileReader();
+
+      reader.onload = e => (this.imageSrc = reader.result);
+
+      reader.readAsDataURL(file);
+    }
+
+    const photo = new FormData();
+
+    if (this.selectFile) {
+      Object.defineProperty(this.selectFile, "name", {
+        writable: true,
+        value: this.user.user.id + ".png"
+      });
+
+      photo.append("photo", this.selectFile, this.selectFile.name);
+
+      this.editProfileService.sendPhoto(photo, this.user.user.id).subscribe(
+        res => {
+          // this.toast.emitToastSuccess("Conta alterada criada com sucesso.");
+          console.log(res);
+
+          // this.router.navigate(["/login"]);
+        },
+        err => {
+          this.toast.emitToastError(
+            "Ocorreu um erro. Por favor tente mais tarde.",
+            "Erro"
+          );
+        }
+      );
+    }
+  }
+
   onSubmit() {
-    this.user = this.editProfileService.user;
     const name = this.editProfileForm.value.name;
     const oldPassword = this.editProfileForm.value.name;
     const newPassword = this.editProfileForm.value.name;
